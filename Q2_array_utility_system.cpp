@@ -1,0 +1,84 @@
+#include <iostream>
+#include <iomanip>
+using namespace std;
+
+int main()
+{
+    int n, arr[100];
+
+    cout << "Enter number of elements: ";
+    cin >> n;
+
+    if (n <= 0 || n > 100)
+    {
+        cout << "Invalid array size";
+        return 0;
+    }
+
+    cout << "Enter array elements: ";
+
+    for (int i = 0; i < n; i++)
+    {
+        cin >> arr[i];
+    }
+
+    int maximum = arr[0];
+    int minimum = arr[0];
+    int sum = 0;
+
+    for (int i = 0; i < n; i++)
+    {
+        if (arr[i] > maximum)
+            maximum = arr[i];
+
+        if (arr[i] < minimum)
+            minimum = arr[i];
+
+        sum = sum + arr[i];
+    }
+
+    double average = (double)sum / n;
+
+    cout << "Maximum: " << maximum << endl;
+    cout << "Minimum: " << minimum << endl;
+    cout << "Sum: " << sum << endl;
+
+    cout << fixed << setprecision(2);
+    cout << "Average: " << average << endl;
+
+    int largest = arr[0];
+    int second = 0;
+    bool found = false;
+
+    for (int i = 1; i < n; i++)
+    {
+        if (arr[i] > largest)
+        {
+            second = largest;
+            largest = arr[i];
+            found = true;
+        }
+        else if (arr[i] < largest)
+        {
+            if (!found || arr[i] > second)
+            {
+                second = arr[i];
+                found = true;
+            }
+        }
+    }
+
+    if (found)
+        cout << "Second Largest: " << second << endl;
+    else
+        cout << "Second Largest: Not available" << endl;
+
+    cout << "Reversed Array: ";
+
+    for (int i = n - 1; i >= 0; i--)
+    {
+        cout << arr[i] << " ";
+    }
+
+    return 0;
+}
